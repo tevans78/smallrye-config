@@ -52,6 +52,11 @@ public class EnvConfigSource extends AbstractConfigSource {
     }
 
     @Override
+    public Set<String> getPropertyNames() {
+        return Collections.unmodifiableSet(getProperties().keySet());
+    }
+
+    @Override
     public String getValue(String name) {
         if (name == null) {
             return null;

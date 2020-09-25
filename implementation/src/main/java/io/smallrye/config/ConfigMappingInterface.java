@@ -63,7 +63,7 @@ final class ConfigMappingInterface implements ConfigMappingMetadata {
     ConfigMappingInterface(final Class<?> interfaceType, final ConfigMappingInterface[] superTypes,
             final Property[] properties) {
         this.interfaceType = interfaceType;
-        this.className = getClass().getPackage().getName() + "." + interfaceType.getSimpleName()
+        this.className = interfaceType.getPackage().getName() + "." + interfaceType.getSimpleName()
                 + interfaceType.getName().hashCode() + "Impl";
         this.superTypes = superTypes;
         this.properties = properties;

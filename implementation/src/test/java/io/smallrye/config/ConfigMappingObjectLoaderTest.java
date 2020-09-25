@@ -23,7 +23,8 @@ class ConfigMappingObjectLoaderTest {
     @Test
     void loadManually() {
         ConfigMappingMetadata mappingMetadata = ConfigMappingObjectLoader.getConfigMappingMetadata(ServerManual.class);
-        ConfigMappingObjectLoader.createMappingObjectClass(mappingMetadata.getClassName(), mappingMetadata.getClassBytes());
+        ConfigMappingObjectLoader.createMappingObjectClass(mappingMetadata.getClassName(), mappingMetadata.getClassBytes(),
+                ServerManual.class);
         ConfigMappingObjectLoader.getImplementationClass(ServerManual.class);
         ConfigMappingObjectLoader.getImplementationClass(ServerManual.class);
     }

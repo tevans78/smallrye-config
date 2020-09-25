@@ -59,7 +59,7 @@ final class ConfigMappingClass {
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
 
         String classInternalName = getInternalName(classType);
-        String interfaceName = ConfigMappingClass.class.getPackage().getName() + "." + classType.getSimpleName() +
+        String interfaceName = classType.getPackage().getName() + "." + classType.getSimpleName() +
                 classType.getName().hashCode() + "I";
         String interfaceInternalName = interfaceName.replace('.', '/');
 
@@ -212,7 +212,7 @@ final class ConfigMappingClass {
         ctor.visitMaxs(2, 2);
         writer.visitEnd();
 
-        return ClassDefiner.defineClass(MethodHandles.lookup(), ConfigMappingClass.class, interfaceName,
+        return ClassDefiner.defineClass(MethodHandles.lookup(), classType, interfaceName,
                 writer.toByteArray());
     }
 

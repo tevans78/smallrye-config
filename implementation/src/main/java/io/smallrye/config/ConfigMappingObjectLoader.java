@@ -58,13 +58,13 @@ public final class ConfigMappingObjectLoader {
         }
 
         return createMappingObjectClass(mappingMetadata.getClassName(),
-                mappingMetadata.getClassBytes());
+                mappingMetadata.getClassBytes(), interfaceType);
     }
 
     @SuppressWarnings("unchecked")
     static Class<? extends ConfigMappingObject> createMappingObjectClass(final String className,
-            final byte[] classBytes) {
-        return (Class<? extends ConfigMappingObject>) ClassDefiner.defineClass(LOOKUP, ConfigMappingObjectLoader.class,
+            final byte[] classBytes, Class<?> parentClass) {
+        return (Class<? extends ConfigMappingObject>) ClassDefiner.defineClass(LOOKUP, parentClass,
                 className, classBytes);
     }
 

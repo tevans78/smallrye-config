@@ -49,11 +49,6 @@ class SysPropConfigSource extends AbstractConfigSource {
     }
 
     @Override
-    public Set<String> getPropertyNames() {
-        return getProperties().keySet();
-    }
-
-    @Override
     public String getValue(String s) {
         return doPrivileged((PrivilegedAction<String>) () -> System.getProperty(s));
     }

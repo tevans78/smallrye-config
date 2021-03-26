@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright 2017 Red Hat, Inc.
+ ~
+ ~  Licensed under the Apache License, Version 2.0 (the "License");
+ ~  you may not use this file except in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing, software
+ ~  distributed under the License is distributed on an "AS IS" BASIS,
+ ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ ~  See the License for the specific language governing permissions and
+ ~  limitations under the License.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.smallrye.config</groupId>
+    <artifactId>smallrye-config-testsuite</artifactId>
+    <version>2.1.1-ibm20210323</version>
+  </parent>
+
+  <artifactId>smallrye-config-tck-jee9</artifactId>
+
+  <name>SmallRye: MicroProfile Config 3 TCK</name>
+
+  <properties>
+    <version.org.jboss.arquillian>1.7.0.Alpha9</version.org.jboss.arquillian>
+    <version.weld.api>4.0.Final</version.weld.api>
+    <version.weld.junit>3.0.0.Final</version.weld.junit>
+    <version.eclipse.microprofile.config>3.0-ibm20210323</version.eclipse.microprofile.config>
+    <version.jakarta.api>9.0.0</version.jakarta.api>
+    <version.jakarta.ws.rs.api>3.0.0</version.jakarta.ws.rs.api>
+    <version.org.jboss.arquillian.container.weld-embedded>3.0.0.Final</version.org.jboss.arquillian.container.weld-embedded>
+    <version.jakarta.annotation.api>2.0.0</version.jakarta.annotation.api>
+    <version.jakarta.json-b.api>2.0.0</version.jakarta.json-b.api>
+    <version.jakarta.json-p.api>2.0.0</version.jakarta.json-p.api>
+    <version.jakarta.enterprise.cdi.api>3.0.0</version.jakarta.enterprise.cdi.api>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>src/test/resources/tck-suite.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <environmentVariables>
+            <MP_TCK_ENV_DUMMY>dummy</MP_TCK_ENV_DUMMY>
+            <my_int_property>45</my_int_property>
+            <MY_BOOLEAN_PROPERTY>true</MY_BOOLEAN_PROPERTY>
+            <my_string_property>haha</my_string_property>
+            <MY_STRING_PROPERTY>woohoo</MY_STRING_PROPERTY>
+            <config_ordinal>45</config_ordinal>
+            <customer_name>Bob</customer_name>
+          </environmentVariables>
+          <systemProperties>
+            <mp.tck.prop.dummy>dummy</mp.tck.prop.dummy>
+            <customer.hobby>Tennis</customer.hobby>
+            <config_ordinal>120</config_ordinal>
+          </systemProperties>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.eclipse.microprofile.config</groupId>
+      <artifactId>microprofile-config-api</artifactId>
+      <version>3.0-ibm20210323</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.smallrye.config</groupId>
+      <artifactId>smallrye-config</artifactId>
+      <classifier>transformed</classifier>
+      <version>2.1.1-ibm20210323</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.smallrye.config</groupId>
+      <artifactId>smallrye-config-core</artifactId>
+      <classifier>transformed</classifier>
+      <version>2.1.1-ibm20210323</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>jakarta.enterprise.cdi-api</artifactId>
+      <version>3.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>2.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Test Dependencies -->
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-core-impl</artifactId>
+      <version>4.0.1.Final</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-api</artifactId>
+      <version>4.0.Final</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.container</groupId>
+      <artifactId>arquillian-weld-embedded</artifactId>
+      <version>3.0.0.Alpha1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.microprofile.config</groupId>
+      <artifactId>microprofile-config-tck</artifactId>
+      <version>3.0-ibm20210323</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.testng</groupId>
+      <artifactId>arquillian-testng-container</artifactId>
+      <version>1.7.0.Alpha9</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.4.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache-extras.beanshell</groupId>
+      <artifactId>bsh</artifactId>
+      <version>2.0b6</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+</project>

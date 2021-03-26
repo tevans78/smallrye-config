@@ -33,6 +33,7 @@
   <modules>
     <module>extra</module>
     <module>tck</module>
+    <module>tck-jee9</module>
   </modules>
 
   <build>
